@@ -1,6 +1,6 @@
 {
   "name": "workflow-dispatch-and-wait",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Trigger running GitHub Actions workflows and wait for result",
   "main": "dist/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "keywords": [
     "github",
     "actions",
-    "worflow",
+    "workflow",
     "trigger"
   ],
   "author": "Ansel Robateau",
