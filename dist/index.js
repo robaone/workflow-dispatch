@@ -9444,7 +9444,7 @@ function waitForCompletionOrTimeout(workflowHandler, checkStatusInterval, waitFo
             try {
                 result = yield workflowHandler.getWorkflowRunStatus();
                 status = result.status;
-                core.debug(`Worflow is running for ${utils_1.formatDuration(Date.now() - start)}. Current status=${status}`);
+                core.debug(`Workflow is running for ${utils_1.formatDuration(Date.now() - start)}. Current status=${status}`);
             }
             catch (e) {
                 core.warning(`Failed to get workflow status: ${e.message}`);
@@ -9455,7 +9455,7 @@ function waitForCompletionOrTimeout(workflowHandler, checkStatusInterval, waitFo
 }
 function computeConclusion(start, waitForCompletionTimeout, result) {
     if (utils_1.isTimedOut(start, waitForCompletionTimeout)) {
-        core.info(`Workflow wait timed out`);
+        core.info('Workflow wait timed out');
         core.setOutput('workflow-conclusion', workflow_handler_1.WorkflowRunConclusion.TIMED_OUT);
         throw new Error('Workflow run has failed due to timeout');
     }
@@ -9482,7 +9482,7 @@ function run() {
             const workflowHandler = new workflow_handler_1.WorkflowHandler(args.token, args.workflowRef, args.owner, args.repo, args.ref);
             // Trigger workflow run
             yield workflowHandler.triggerWorkflow(args.inputs);
-            core.info(`Workflow triggered 🚀`);
+            core.info('Workflow triggered 🚀');
             if (args.displayWorkflowUrl) {
                 const url = yield getFollowUrl(workflowHandler, args.displayWorkflowUrlInterval, args.displayWorkflowUrlTimeout);
                 core.info(`You can follow the running workflow here: ${url}`);
@@ -9491,7 +9491,7 @@ function run() {
             if (!args.waitForCompletion) {
                 return;
             }
-            core.info(`Waiting for workflow completion`);
+            core.info('Waiting for workflow completion');
             const { result, start } = yield waitForCompletionOrTimeout(workflowHandler, args.checkStatusInterval, args.waitForCompletionTimeout);
             core.setOutput('workflow-url', result === null || result === void 0 ? void 0 : result.url);
             computeConclusion(start, args.waitForCompletionTimeout, result);
@@ -9830,7 +9830,7 @@ class WorkflowHandler {
                     repo: this.repo
                 });
                 const workflows = workflowsResp.data.workflows;
-                debug_1.debug(`List Workflows`, workflows);
+                debug_1.debug('List Workflows', workflows);
                 // Locate workflow either by name or id
                 const workflowFind = workflows.find((workflow) => workflow.name === this.workflowRef || workflow.id.toString() === this.workflowRef);
                 if (!workflowFind)
